@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>New tab</title>
+  <link rel="stylesheet" href="newtab.css">
+</head>
+<body>
+  <!-- "No URL configured" state: shown on first run. -->
+  <div id="setup" class="card" hidden>
+    <h1>Custom New Tab</h1>
+    <p>Choose the web page to show in every new tab.</p>
+    <button id="open-options" type="button">Open settings</button>
+  </div>
+
+  <!--
+    Fallback screen, shown BEHIND the iframe.
+    Only visible if the page fails to load (usually: an untrusted
+    certificate, or an http page blocked by Firefox inside a secure frame).
+  -->
+  <div id="fallback" class="card" hidden>
+    <p>Page not showing?</p>
+    <a id="fallback-link" href="#">Open the page directly</a>
+    <p class="hint">Often an untrusted certificate, or an http page blocked inside a secure
+      frame. Open the link once to accept the exception, then open a new tab again.</p>
+  </div>
+
+  <!-- The chosen page, shown full-screen. The "real" document stays this local page,
+       so Firefox's address bar stays empty and already focused. src is set by newtab.js. -->
+  <iframe id="dashboard"
+          title="New tab"
+          allow="fullscreen"
+          hidden></iframe>
+
+  <!-- Persistent settings button, so the configured page can always be changed. -->
+  <button id="settings" type="button" title="Settings" aria-label="Settings" hidden>⚙</button>
+
+  <script src="newtab.js"></script>
+</body>
+</html>
